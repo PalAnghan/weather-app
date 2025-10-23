@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <!-- 1. Load External Libraries -->
+    <!-- We still need Tailwind CSS for all the "class=" styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- We still need Lucide for the icons -->
+    <script src="https://unpkg.com/lucide-icons"></script>
+
+    <!-- 2. Load Our Custom Stylesheet -->
+    <!-- This links to our new style.css file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen flex items-center justify-center font-sans p-4">
+
+    <!-- Weather Card: This is the main container for our app -->
+    <div class="bg-white/70 backdrop-blur-md rounded-xl shadow-2xl p-6 sm:p-8 w-full max-w-md">
+        
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-6">Weather App</h1>
+
+        <!-- Search Bar: A flex container for the input and button -->
+        <div class="flex space-x-2 mb-6">
+            <input type="text" id="cityInput" placeholder="Enter city name..." class="flex-1 p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-all shadow-sm">
+            <button id="searchButton" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl focus:outline-none">
+                <!-- Search Icon (inline SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+        </div>
+
+        <!-- App Body: This container will change to show different "states" (initial, loading, error, or success) -->
+        <div id="app-body">
+
+            <!-- Initial State Message: Shown on page load -->
+            <div id="message-initial" class="text-center text-gray-500 py-8">
+                <p>Search for a city to see the weather.</p>
+            </div>
+
+            <!-- Loading Spinner: Shown while fetching data -->
+            <div id="message-loading" class="hidden text-center py-8">
+                <!-- The spinner div uses our custom CSS animation -->
+                <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                <p class="mt-4 text-lg text-gray-600">Loading...</p>
+            </div>
+
+            <!-- Error Message: Shown if the API call fails -->
+            <div id="message-error" class="hidden text-center py-8">
+                <p class="text-xl font-semibold text-red-600">Error</p>
+                <!-- The specific error message will be added here by JavaScript -->
+                <p id="errorMessage" class="text-gray-600"></p>
+            </div>
+
+            <!-- Weather Display: Shown on a successful search -->
+            <div id="weather-display" class="hidden">
+                
+                <!-- Location and Main Temp -->
+                <div class="text-center mb-6">
+                    <h2 id="cityName" class="text-4xl font-extrabold text-gray-900">--</h2>
+                    <p id="weatherDescription" class="text-xl text-gray-600 capitalize">--</p>
+                </div>
+
+                <!-- Icon and Temperature -->
+                <div class="flex items-center justify-center space-x-4 mb-8">
+                    <!-- The weather icon will be added here by JavaScript -->
+                    <div id="weatherIcon" class="text-7xl"></div>
+                    <p id="temperature" class="text-8xl font-thin text-gray-900">--°</p>
+                </div>
+
+                <!-- Details Grid: For extra info -->
+                <div class="grid grid-cols-3 gap-4 text-center bg-blue-50/50 p-4 rounded-lg">
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Feels Like</p>
+                        <p id="feelsLike" class="text-2xl font-semibold text-gray-800">--°</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Humidity</p>
+                        <p id="humidity" class="text-2xl font-semibold text-gray-800">--%</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Wind</p>
+                        <p id="windSpeed" class="text-2xl font-semibold text-gray-800">--</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Load Our Custom JavaScript -->
+    <!-- 'defer' tells the browser to load the HTML first, then the script -->
+    <script src="script.js" defer></script>
+</body>
+</html>
