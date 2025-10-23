@@ -1,0 +1,32 @@
+/*
+  This file contains our custom CSS.
+  Most styling is done with Tailwind classes in the HTML,
+  but we can use this file for things Tailwind doesn't
+  do easily, like custom animations.
+*/
+
+/* 1. Define the 'spin' animation */
+/* This creates a 360-degree rotation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 2. Apply the 'spin' animation */
+/* Any element with the class 'animate-spin' (like our spinner)
+   will use this animation.
+   Note: Tailwind also has its own 'animate-spin' class,
+   but defining it here shows how you'd add custom CSS.
+*/
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* 3. A simple helper class to hide elements */
+/* We'll add/remove this class with JavaScript
+   to show and hide different parts of the UI.
+*/
+.hidden {
+  display: none;
+}
